@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using DanielEverland.ScriptableObjectArchitecture.References;
-using DanielEverland.ScriptableObjectArchitecture.Utility;
+﻿using DanielEverland.ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
 namespace DanielEverland.ScriptableObjectArchitecture.Variables

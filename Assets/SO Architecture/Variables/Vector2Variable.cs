@@ -1,5 +1,3 @@
-using UnityEngine;
-using DanielEverland.ScriptableObjectArchitecture.References;
 using DanielEverland.ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
