@@ -1,12 +1,17 @@
 {
     "name": "MineColoney.Tests",
     "references": [
-        "MineColony.Game"
+        "MineColony.Game",
+        "DanielEverland.ScriptableObjectArchitecture"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
 }
