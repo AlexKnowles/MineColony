@@ -1,8 +1,13 @@
-using UnityEngine;
+using DanielEverland.ScriptableObjectArchitecture.Variables;
 
-[System.Serializable]
-public sealed class Vector2Reference : BaseReference<Vector2, Vector2Variable>
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public Vector2Reference() : base() { }
-    public Vector2Reference(Vector2 value) : base(value) { }
+    using UnityEngine;
+
+    [System.Serializable]
+    public sealed class Vector2Reference : BaseReference<Vector2, Vector2Variable>
+    {
+        public Vector2Reference() : base() { }
+        public Vector2Reference(Vector2 value) : base(value) { }
+    }
 }

@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using UnityEngine;
 using UnityEngine.Events;
 
-[ExecuteInEditMode]
-public sealed class GameEventListener : BaseGameEventListener<GameEventBase, UnityEvent>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
 {
+    [ExecuteInEditMode]
+    public sealed class GameEventListener : BaseGameEventListener<GameEventBase, UnityEvent>
+    {
+    }
 }

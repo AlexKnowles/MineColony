@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class CharReference : BaseReference<char, CharVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public CharReference() : base() { }
-    public CharReference(char value) : base(value) { }
+    [System.Serializable]
+    public sealed class CharReference : BaseReference<char, CharVariable>
+    {
+        public CharReference() : base() { }
+        public CharReference(char value) : base(value) { }
+    }
 }

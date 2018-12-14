@@ -1,9 +1,13 @@
+using DanielEverland.ScriptableObjectArchitecture.Utility;
 using UnityEngine;
 
-[CreateAssetMenu(
+namespace DanielEverland.ScriptableObjectArchitecture.Variables
+{
+    [CreateAssetMenu(
     fileName = "GameObjectVariable.asset",
     menuName = SOArchitecture_Utility.VARIABLE_SUBMENU + "GameObject",
     order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 0)]
-public sealed class GameObjectVariable : BaseVariable<GameObject>
-{
+    public sealed class GameObjectVariable : BaseVariable<GameObject>
+    {
+    }
 }

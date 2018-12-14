@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class ObjectUnityEvent : UnityEvent<Object>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Responses
 {
+    [System.Serializable]
+    public class ObjectUnityEvent : UnityEvent<Object>
+    {
+    }
 }

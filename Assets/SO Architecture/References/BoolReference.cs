@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class BoolReference : BaseReference<bool, BoolVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public BoolReference() : base() { }
-    public BoolReference(bool value) : base(value) { }
+    [System.Serializable]
+    public sealed class BoolReference : BaseReference<bool, BoolVariable>
+    {
+        public BoolReference() : base() { }
+        public BoolReference(bool value) : base(value) { }
+    }
 }

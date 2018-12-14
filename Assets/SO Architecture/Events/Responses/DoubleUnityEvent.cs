@@ -1,6 +1,9 @@
 ﻿using UnityEngine.Events;
 
-[System.Serializable]
-public sealed class DoubleUnityEvent : UnityEvent<double>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Responses
 {
+    [System.Serializable]
+    public sealed class DoubleUnityEvent : UnityEvent<double>
+    {
+    }
 }

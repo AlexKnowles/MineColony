@@ -1,6 +1,9 @@
 ﻿using UnityEngine.Events;
 
-[System.Serializable]
-public sealed class ULongUnityEvent : UnityEvent<ulong>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Responses
 {
+    [System.Serializable]
+    public sealed class ULongUnityEvent : UnityEvent<ulong>
+    {
+    }
 }

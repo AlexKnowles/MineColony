@@ -1,0 +1,10 @@
+{
+    "name": "MineColony.Game",
+    "references": [
+        "DanielEverland.ScriptableObjectArchitecture"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

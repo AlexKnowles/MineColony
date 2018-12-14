@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class SByteReference : BaseReference<sbyte, SByteVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public SByteReference() : base() { }
-    public SByteReference(sbyte value) : base(value) { }
+    [System.Serializable]
+    public sealed class SByteReference : BaseReference<sbyte, SByteVariable>
+    {
+        public SByteReference() : base() { }
+        public SByteReference(sbyte value) : base(value) { }
+    }
 }

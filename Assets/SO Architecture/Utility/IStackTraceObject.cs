@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using System.Collections.Generic;
 
-public interface IStackTraceObject
+namespace DanielEverland.ScriptableObjectArchitecture.Utility
 {
-    List<StackTraceEntry> StackTraces { get; }
+    public interface IStackTraceObject
+    {
+        List<StackTraceEntry> StackTraces { get; }
 
-    void AddStackTrace();
-    void AddStackTrace(object value);
+        void AddStackTrace();
+        void AddStackTrace(object value);
+    }
 }
