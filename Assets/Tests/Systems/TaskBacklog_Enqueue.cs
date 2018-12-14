@@ -1,37 +1,45 @@
-﻿using UnityEngine;
-using UnityEngine.TestTools;
+﻿using MineColony.Game.Systems;
+using MineColony.Tests.Builders;
+using MineColony.Tests.Utilities;
 using NUnit.Framework;
-using System.Collections;
-using MineColony.Game.Systems;
-using UnityEditor;
+using UnityEngine;
 
 namespace MineColony.Tests.Systems
 {
     public class TaskBacklog_Enqueue
     {
-
         [Test]
-        public void FirstTestSimplePasses()
+        public void TaskIsAddedToCollection()
         {
+            TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().AddOnTaskEnqueue().Build();
 
-            //TaskBacklog taskBacklog = (TaskBacklog)AssetDatabase.LoadAssetAtPath("/Game/Systems", typeof(TaskBacklog));
+            Object task = new Object();
+            taskBacklog.Enqueue(task);
 
-            //taskBacklog.TaskCollection 
-
-            //Object task = new Object();
-
-
-            //taskBacklog.Enqueue(task)
+            Assert.AreEqual(1, taskBacklog.TaskCollection.Count);
         }
 
-        // A UnityTest behaves like a coroutine in PlayMode
-        // and allows you to yield null to skip a frame in EditMode
-        [UnityTest]
-        public IEnumerator FirstTestWithEnumeratorPasses()
+        [Test]
+        public void TaskIsAddedToCollectionWhenNoTriggerIsAttached()
         {
-            // Use the Assert class to test conditions.
-            // yield to skip a frame
-            yield return null;
+            TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().Build();
+
+            Object task = new Object();
+            taskBacklog.Enqueue(task);
+
+            Assert.AreEqual(1, taskBacklog.TaskCollection.Count);
+        }
+
+        [Test]
+        public void GameEventTriggerFiresOnEnqueue()
+        {
+            GameEventListenerFacade gameEventListenerFacade = new GameEventListenerFacade();
+            TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().AddOnTaskEnqueue(gameEventListenerFacade).Build();
+
+            Object task = new Object();
+            taskBacklog.Enqueue(task);
+
+            Assert.IsTrue(gameEventListenerFacade.EventWasRaised);
         }
     }
 }
