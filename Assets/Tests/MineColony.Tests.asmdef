@@ -1,5 +1,5 @@
 {
-    "name": "MineColoney.Tests",
+    "name": "MineColony.Tests",
     "references": [
         "MineColony.Game",
         "DanielEverland.ScriptableObjectArchitecture"
