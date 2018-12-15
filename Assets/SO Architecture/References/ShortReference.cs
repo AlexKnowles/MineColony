@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class ShortReference : BaseReference<short, ShortVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public ShortReference() : base() { }
-    public ShortReference(short value) : base(value) { }
+    [System.Serializable]
+    public sealed class ShortReference : BaseReference<short, ShortVariable>
+    {
+        public ShortReference() : base() { }
+        public ShortReference(short value) : base(value) { }
+    }
 }

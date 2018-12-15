@@ -1,23 +1,27 @@
 ﻿using System.Reflection;
 using UnityEngine;
 using UnityEditor;
+using DanielEverland.ScriptableObjectArchitecture.Events.Listeners;
 
-[CustomEditor(typeof(BaseGameEventListener<,>), true)]
-public class GameEventListenerEditor : BaseGameEventListenerEditor
+namespace DanielEverland.ScriptableObjectArchitecture.Editor.Inspectors
 {
-    private MethodInfo _raiseMethod;
-
-    protected override void OnEnable()
+    [CustomEditor(typeof(BaseGameEventListener<,>), true)]
+    public class GameEventListenerEditor : BaseGameEventListenerEditor
     {
-        base.OnEnable();
+        private MethodInfo _raiseMethod;
 
-        _raiseMethod = target.GetType().BaseType.GetMethod("OnEventRaised");
-    }
-    protected override void DrawRaiseButton()
-    {
-        if (GUILayout.Button("Raise"))
+        protected override void OnEnable()
         {
-            _raiseMethod.Invoke(target, null);
+            base.OnEnable();
+
+            _raiseMethod = target.GetType().BaseType.GetMethod("OnEventRaised");
+        }
+        protected override void DrawRaiseButton()
+        {
+            if (GUILayout.Button("Raise"))
+            {
+                _raiseMethod.Invoke(target, null);
+            }
         }
     }
 }

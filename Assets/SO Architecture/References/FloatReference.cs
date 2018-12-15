@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class FloatReference : BaseReference<float, FloatVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public FloatReference() : base() { }
-    public FloatReference(float value) : base(value) { }
+    [System.Serializable]
+    public sealed class FloatReference : BaseReference<float, FloatVariable>
+    {
+        public FloatReference() : base() { }
+        public FloatReference(float value) : base(value) { }
+    }
 }

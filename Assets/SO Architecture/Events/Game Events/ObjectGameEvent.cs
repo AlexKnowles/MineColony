@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using DanielEverland.ScriptableObjectArchitecture.Utility;
+using UnityEngine;
 
-[System.Serializable]
-[CreateAssetMenu(
-    fileName = "ObjectGameEvent.asset",
-    menuName = SOArchitecture_Utility.GAME_EVENT + "Object",
-    order = SOArchitecture_Utility.ASSET_MENU_ORDER_EVENTS + 1)]
-public class ObjectGameEvent : GameEventBase<Object>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.GameEvents
 {
+    [System.Serializable]
+    [CreateAssetMenu(
+        fileName = "ObjectGameEvent.asset",
+        menuName = SOArchitecture_Utility.GAME_EVENT + "Object",
+        order = SOArchitecture_Utility.ASSET_MENU_ORDER_EVENTS + 1)]
+    public class ObjectGameEvent : GameEventBase<Object>
+    {
+    }
 }

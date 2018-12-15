@@ -1,6 +1,11 @@
-﻿[System.Serializable]
-public sealed class LongReference : BaseReference<long, LongVariable>
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public LongReference() : base() { }
-    public LongReference(long value) : base(value) { }
+    [System.Serializable]
+    public sealed class LongReference : BaseReference<long, LongVariable>
+    {
+        public LongReference() : base() { }
+        public LongReference(long value) : base(value) { }
+    }
 }

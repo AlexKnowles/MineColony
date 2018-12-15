@@ -1,38 +1,42 @@
-﻿using UnityEngine;
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+using UnityEngine;
 
-[System.Serializable]
-public abstract class BaseReference<TBase, TVariable> : BaseReference where TVariable : BaseVariable<TBase>
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public BaseReference() { }
-    public BaseReference(TBase baseValue)
+    [System.Serializable]
+    public abstract class BaseReference<TBase, TVariable> : BaseReference where TVariable : BaseVariable<TBase>
     {
-        _useConstant = true;
-        _constantValue = baseValue;
-    }
-
-    [SerializeField]
-    protected bool _useConstant = false;
-    [SerializeField]
-    protected TBase _constantValue;
-    [SerializeField]
-    protected TVariable _variable;
-
-    public TBase Value
-    {
-        get { return _useConstant ? _constantValue : _variable.Value; }
-        set
+        public BaseReference() { }
+        public BaseReference(TBase baseValue)
         {
-            if (!_useConstant && _variable != null)
-                _variable.Value = value;
-            else if (_useConstant)
-                _constantValue = value;
+            _useConstant = true;
+            _constantValue = baseValue;
+        }
+
+        [SerializeField]
+        protected bool _useConstant = false;
+        [SerializeField]
+        protected TBase _constantValue;
+        [SerializeField]
+        protected TVariable _variable;
+
+        public TBase Value
+        {
+            get { return _useConstant ? _constantValue : _variable.Value; }
+            set
+            {
+                if (!_useConstant && _variable != null)
+                    _variable.Value = value;
+                else if (_useConstant)
+                    _constantValue = value;
+            }
+        }
+        public override string ToString()
+        {
+            return Value.ToString();
         }
     }
-    public override string ToString()
-    {
-        return Value.ToString();
-    }
-}
 
-//Can't get property drawer to work with generic arguments
-public abstract class BaseReference { }
+    //Can't get property drawer to work with generic arguments
+    public abstract class BaseReference { }
+}

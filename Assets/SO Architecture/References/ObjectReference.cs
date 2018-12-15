@@ -1,8 +1,12 @@
-﻿using UnityEngine;
+﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+using UnityEngine;
 
-[System.Serializable]
-public class ObjectReference : BaseReference<Object, ObjectVariable>
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public ObjectReference() : base() { }
-    public ObjectReference(Object value) : base(value) { }
+    [System.Serializable]
+    public class ObjectReference : BaseReference<Object, ObjectVariable>
+    {
+        public ObjectReference() : base() { }
+        public ObjectReference(Object value) : base(value) { }
+    }
 }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine.Events;
 
-[System.Serializable]
-public sealed class ByteUnityEvent : UnityEvent<byte>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Responses
 {
+    [System.Serializable]
+    public sealed class ByteUnityEvent : UnityEvent<byte>
+    {
+    }
 }

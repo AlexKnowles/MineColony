@@ -1,5 +1,10 @@
+using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using DanielEverland.ScriptableObjectArchitecture.Events.Responses;
 using UnityEngine;
 
-public sealed class QuaternionGameEventListener : BaseGameEventListener<Quaternion, QuaternionGameEvent, QuaternionUnityEvent>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
 {
+    public sealed class QuaternionGameEventListener : BaseGameEventListener<Quaternion, QuaternionGameEvent, QuaternionUnityEvent>
+    {
+    }
 }

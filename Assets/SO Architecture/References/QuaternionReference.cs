@@ -1,8 +1,12 @@
+using DanielEverland.ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
-[System.Serializable]
-public sealed class QuaternionReference : BaseReference<Quaternion, QuaternionVariable>
+namespace DanielEverland.ScriptableObjectArchitecture.References
 {
-    public QuaternionReference() : base() { }
-    public QuaternionReference(Quaternion value) : base(value) { }
+    [System.Serializable]
+    public sealed class QuaternionReference : BaseReference<Quaternion, QuaternionVariable>
+    {
+        public QuaternionReference() : base() { }
+        public QuaternionReference(Quaternion value) : base(value) { }
+    }
 }

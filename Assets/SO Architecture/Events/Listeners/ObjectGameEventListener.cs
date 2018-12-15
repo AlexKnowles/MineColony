@@ -1,5 +1,10 @@
-﻿using UnityEngine;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using DanielEverland.ScriptableObjectArchitecture.Events.Responses;
+using UnityEngine;
 
-public class ObjectGameEventListener : BaseGameEventListener<Object, ObjectGameEvent, ObjectUnityEvent>
+namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
 {
+    public class ObjectGameEventListener : BaseGameEventListener<Object, ObjectGameEvent, ObjectUnityEvent>
+    {
+    }
 }
