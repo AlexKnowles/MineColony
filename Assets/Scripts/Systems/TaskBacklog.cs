@@ -1,5 +1,5 @@
-﻿using DanielEverland.ScriptableObjectArchitecture.Collections;
-using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using MineColony.Game.ScriptableObjectArchitecture.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -8,10 +8,10 @@ namespace MineColony.Game.Systems
     [CreateAssetMenu(menuName = "Systems/TaskBacklog")]
     public class TaskBacklog : ScriptableObject
     {
-        public ObjectCollection TaskCollection;
+        public TaskCollection TaskCollection;
         public GameEvent OnTaskEnqueue;
 
-        public void Enqueue(Object task)
+        public void Enqueue(Task task)
         {
             TaskCollection.Add(task);
 
@@ -21,9 +21,14 @@ namespace MineColony.Game.Systems
             }
         }
 
-        public Object Dequeue()
+        public Task Dequeue()
         {
-            Object task = TaskCollection.First();
+            if(TaskCollection == null || TaskCollection.Count == 0)
+            {
+                return null;
+            }
+
+            Task task = TaskCollection.First();
 
             TaskCollection.RemoveAt(0);
 

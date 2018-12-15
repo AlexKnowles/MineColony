@@ -1,5 +1,5 @@
-﻿using DanielEverland.ScriptableObjectArchitecture.Collections;
-using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using MineColony.Game.ScriptableObjectArchitecture.Collections;
 using MineColony.Game.Systems;
 using MineColony.Tests.Utilities;
 using UnityEngine;
@@ -22,21 +22,35 @@ namespace MineColony.Tests.Builders
 
         public TaskBacklogBuilder AddTaskCollection()
         {
-            _taskBacklog.TaskCollection = new ObjectCollection();
+            _taskBacklog.TaskCollection = ScriptableObject.CreateInstance<TaskCollection>();
+
+            return this;
+        }
+
+        public TaskBacklogBuilder AddTaskCollection(params Task[] tasks)
+        {
+            TaskCollection taskCollection = ScriptableObject.CreateInstance<TaskCollection>();
+
+            foreach (Task task in tasks)
+            {
+                taskCollection.Add(task);
+            }
+
+            _taskBacklog.TaskCollection = taskCollection;
 
             return this;
         }
 
         public TaskBacklogBuilder AddOnTaskEnqueue()
         {
-            _taskBacklog.OnTaskEnqueue = new GameEvent();
+            _taskBacklog.OnTaskEnqueue = ScriptableObject.CreateInstance<GameEvent>();
 
             return this;
         }
 
         public TaskBacklogBuilder AddOnTaskEnqueue(GameEventListenerFacade gameEventListenerFacade)
         {
-            GameEvent gameEvent = new GameEvent();
+            GameEvent gameEvent = ScriptableObject.CreateInstance<GameEvent>();
 
             gameEvent.AddListener(gameEventListenerFacade);
 

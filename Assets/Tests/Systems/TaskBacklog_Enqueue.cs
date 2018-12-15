@@ -13,10 +13,25 @@ namespace MineColony.Tests.Systems
         {
             TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().AddOnTaskEnqueue().Build();
 
-            Object task = new Object();
+            Task task = new TaskBuilder().Build();
             taskBacklog.Enqueue(task);
 
             Assert.AreEqual(1, taskBacklog.TaskCollection.Count);
+        }
+
+        [Test]
+        public void TaskIsAddedToTheEndOfTheCollection()
+        {
+            Task existingTask1 = new TaskBuilder().AddName("ExistingTask1").Build();
+            Task existingTask2 = new TaskBuilder().AddName("ExistingTask1").Build();
+            TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection(existingTask1, existingTask2).Build();
+
+            Task task = new TaskBuilder().AddName("TheLastTask").Build();
+            taskBacklog.Enqueue(task);
+
+            Task lastTaskInBacklog = taskBacklog.TaskCollection[taskBacklog.TaskCollection.Count - 1];
+            Assert.AreEqual(3, taskBacklog.TaskCollection.Count);
+            Assert.AreEqual("TheLastTask", lastTaskInBacklog.name);
         }
 
         [Test]
@@ -24,7 +39,7 @@ namespace MineColony.Tests.Systems
         {
             TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().Build();
 
-            Object task = new Object();
+            Task task = new TaskBuilder().Build();
             taskBacklog.Enqueue(task);
 
             Assert.AreEqual(1, taskBacklog.TaskCollection.Count);
@@ -36,7 +51,7 @@ namespace MineColony.Tests.Systems
             GameEventListenerFacade gameEventListenerFacade = new GameEventListenerFacade();
             TaskBacklog taskBacklog = new TaskBacklogBuilder().AddTaskCollection().AddOnTaskEnqueue(gameEventListenerFacade).Build();
 
-            Object task = new Object();
+            Task task = new TaskBuilder().Build();
             taskBacklog.Enqueue(task);
 
             Assert.IsTrue(gameEventListenerFacade.EventWasRaised);
