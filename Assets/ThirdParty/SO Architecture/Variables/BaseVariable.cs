@@ -1,9 +1,9 @@
-﻿using DanielEverland.ScriptableObjectArchitecture.Utility;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
 using UnityEngine;
 
 namespace DanielEverland.ScriptableObjectArchitecture.Variables
 {
-    public abstract class BaseVariable : SOArchitectureBaseObject
+    public abstract class BaseVariable : GameEventBase
     {
         public abstract bool ReadOnly { get; }
         public abstract System.Type Type { get; }
@@ -11,10 +11,32 @@ namespace DanielEverland.ScriptableObjectArchitecture.Variables
     }
     public abstract class BaseVariable<T> : BaseVariable
     {
-        public virtual T Value { get { return _value; } set { _value = SetValue(value); } }
+        public virtual T Value
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = SetValue(value);
+                Raise();
+            }
+        }
         public override bool ReadOnly { get { return _readOnly; } }
         public override System.Type Type { get { return typeof(T); } }
-        public override object BaseValue { get { return _value; } set { _value = SetValue((T)value); } }
+        public override object BaseValue
+        {
+            get
+            {
+                return _value;
+            }
+            set
+            {
+                _value = SetValue((T)value);
+                Raise();
+            }
+        }
 
         [SerializeField]
         protected T _value;
@@ -55,7 +77,7 @@ namespace DanielEverland.ScriptableObjectArchitecture.Variables
 
         public override string ToString()
         {
-            return _value.ToString();
+            return _value == null ? "null" : _value.ToString();
         }
         public static implicit operator T(BaseVariable<T> variable)
         {

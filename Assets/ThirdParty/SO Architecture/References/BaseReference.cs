@@ -1,4 +1,5 @@
-﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+﻿using DanielEverland.ScriptableObjectArchitecture.Events.Listeners;
+using DanielEverland.ScriptableObjectArchitecture.Variables;
 using UnityEngine;
 
 namespace DanielEverland.ScriptableObjectArchitecture.References
@@ -26,9 +27,41 @@ namespace DanielEverland.ScriptableObjectArchitecture.References
             set
             {
                 if (!_useConstant && _variable != null)
+                {
                     _variable.Value = value;
+                }
                 else if (_useConstant)
+                {
                     _constantValue = value;
+                }
+            }
+        }
+        public void AddListener(IGameEventListener listener)
+        {
+            if (_variable != null)
+            {
+                _variable.AddListener(listener);
+            }
+        }
+        public void RemoveListener(IGameEventListener listener)
+        {
+            if (_variable != null)
+            {
+                _variable.RemoveListener(listener);
+            }
+        }
+        public void AddListener(System.Action action)
+        {
+            if (_variable != null)
+            {
+                _variable.AddListener(action);
+            }
+        }
+        public void RemoveListener(System.Action action)
+        {
+            if (_variable != null)
+            {
+                _variable.AddListener(action);
             }
         }
         public override string ToString()

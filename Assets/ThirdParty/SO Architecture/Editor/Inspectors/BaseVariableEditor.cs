@@ -1,4 +1,5 @@
-﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
+﻿using DanielEverland.ScriptableObjectArchitecture.Editor.Drawers;
+using DanielEverland.ScriptableObjectArchitecture.Variables;
 using DanielEverland.ScriptableObjectArchitecture.Variables.Clamped;
 using UnityEditor;
 using UnityEditor.AnimatedValues;
@@ -49,29 +50,16 @@ namespace DanielEverland.ScriptableObjectArchitecture.Editor.Inspectors
         }
         protected void DrawValue()
         {
-            if (SOArchitecture_EditorUtility.HasPropertyDrawer(Target.Type))
+            using (var scope = new EditorGUI.ChangeCheckScope())
             {
-                //Unity doesn't like it when you have scene objects on assets,
-                //so we do some magic to display it anyway
-                if (typeof(Object).IsAssignableFrom(Target.Type)
-                    && !EditorUtility.IsPersistent(_valueProperty.objectReferenceValue)
-                    && _valueProperty.objectReferenceValue != null)
-                {
-                    using (new EditorGUI.DisabledGroupScope(true))
-                    {
-                        EditorGUILayout.ObjectField(new GUIContent("Value"), _valueProperty.objectReferenceValue, Target.Type, false);
-                    }
-                }
-                else
-                {
-                    EditorGUILayout.PropertyField(_valueProperty);
-                }
-            }
-            else
-            {
-                string labelContent = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.BaseValue.ToString() + "]";
+                string content = "Cannot display value. No PropertyDrawer for (" + Target.Type + ") [" + Target.ToString() + "]";
+                GenericPropertyDrawer.DrawPropertyDrawer(Target.Type, _valueProperty, new GUIContent(content, content));
 
-                EditorGUILayout.LabelField(new GUIContent(labelContent, labelContent));
+                if (scope.changed)
+                {
+                    // Value changed, raise events
+                    Target.Raise();
+                }
             }
         }
         protected void DrawClampedFields()
