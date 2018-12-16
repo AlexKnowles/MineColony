@@ -156,8 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16c5f744c19f5c148a97cf1281825474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileSelectionAxis: TileSelection
-  OnBeginTileSelection: {fileID: 11400000, guid: de4b21534fdb6734bbf69944bfebeb9f,
+  PlayerInput: {fileID: 27601466}
+  AxisName: TileSelection
+  PointerPosition: {fileID: 11400000, guid: 4f2df5d7bdef3a84a949d0dce0377e7b, type: 2}
+  OnBeginTileSelection: {fileID: 11400000, guid: 013316b8a7f8fdc4aa0dd412fa48f96c,
     type: 2}
   OnEndTileSelection: {fileID: 11400000, guid: 136996493a925fc439a7cd23c4a56b2b, type: 2}
 --- !u!114 &27601466
@@ -173,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerNumber: 1
+  PlayerCamera: {fileID: 534669904}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
