@@ -17,23 +17,24 @@ namespace MineColony.Tests.Components.Inputs
             GameEventFacade onBeginTileSelection = new GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
 
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
-                                                                                   .AddPlayerInput(playerInputFacade)
-                                                                                   .Build();
+            new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
+                                           .AddPlayerInput(playerInputFacade)
+                                           .Build();
 
             yield return null;
 
             Assert.IsTrue(onBeginTileSelection.EventWasRaised);
         }
-        
+
         [UnityTest]
         public IEnumerator MultiplePointersDownOnlyBeginsTileSelectionOnce()
         {
             GameEventFacade onBeginTileSelection = new GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
-                                                                                   .AddPlayerInput(playerInputFacade)
-                                                                                   .Build();
+
+            new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
+                                           .AddPlayerInput(playerInputFacade)
+                                           .Build();
 
             yield return null;
 
@@ -56,10 +57,10 @@ namespace MineColony.Tests.Components.Inputs
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.forward);
             Vector3Variable pointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
 
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
-                                                                                   .AddPlayerInput(playerInputFacade)
-                                                                                   .AddPointerPosition(pointerPosition)
-                                                                                   .Build();
+            new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
+                                           .AddPlayerInput(playerInputFacade)
+                                           .AddPointerPosition(pointerPosition)
+                                           .Build();
 
             Assert.AreEqual(new Vector3(0, 0, 0), pointerPosition.Value);
 
@@ -79,9 +80,10 @@ namespace MineColony.Tests.Components.Inputs
         {
             GameEventFacade onEndTileSelection = new GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
-                                                                                   .AddPlayerInput(playerInputFacade)
-                                                                                   .Build();
+
+            new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
+                                           .AddPlayerInput(playerInputFacade)
+                                           .Build();
 
             yield return null;
 
@@ -98,9 +100,10 @@ namespace MineColony.Tests.Components.Inputs
         {
             GameEventFacade onEndTileSelection = new GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
-                                                                                   .AddPlayerInput(playerInputFacade)
-                                                                                   .Build();
+
+            new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
+                                           .AddPlayerInput(playerInputFacade)
+                                           .Build();
             yield return null;
 
             Assert.IsFalse(onEndTileSelection.EventWasRaised);
@@ -126,9 +129,10 @@ namespace MineColony.Tests.Components.Inputs
         {
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.left);
             Vector3Variable pointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
-            TileSelectionInput tileSelectionInput = new TileSelectionInputBuilder().AddPlayerInput(playerInputFacade)
-                                                                                   .AddPointerPosition(pointerPosition)
-                                                                                   .Build();
+
+            new TileSelectionInputBuilder().AddPlayerInput(playerInputFacade)
+                                           .AddPointerPosition(pointerPosition)
+                                           .Build();
 
             yield return null;
 
