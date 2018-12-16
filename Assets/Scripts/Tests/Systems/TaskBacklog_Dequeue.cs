@@ -1,6 +1,5 @@
-﻿using MineColony.Builders;
-using MineColony.Game.Systems;
-using MineColony.Tests.Builders;
+﻿using MineColony.Game.Systems;
+using MineColony.TestUtilities.Builders;
 using NUnit.Framework;
 using UnityEngine;
 

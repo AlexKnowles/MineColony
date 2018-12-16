@@ -1,7 +1,6 @@
-﻿using MineColony.Builders;
-using MineColony.Facades;
-using MineColony.Game.Systems;
-using MineColony.Tests.Builders;
+﻿using MineColony.Game.Systems;
+using MineColony.TestUtilities.Builders;
+using MineColony.TestUtilities.Facades;
 using NUnit.Framework;
 
 namespace MineColony.Tests.Systems

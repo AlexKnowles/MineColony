@@ -11,7 +11,7 @@ namespace MineColony.TestUtilities.Facades
 
         public GameEventFacade()
         {
-            EventWasRaised = false;
+            Reset();
 
             GameEvent = ScriptableObject.CreateInstance<GameEvent>();
             GameEvent.AddListener(this);
@@ -20,6 +20,11 @@ namespace MineColony.TestUtilities.Facades
         public void OnEventRaised()
         {
             EventWasRaised = true;
+        }
+
+        public void Reset()
+        {
+            EventWasRaised = false;
         }
     }
 }

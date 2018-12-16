@@ -1,35 +1,44 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using DanielEverland.ScriptableObjectArchitecture.Variables;
+using MineColony.Game.Interfaces;
 using UnityEngine;
 
 namespace MineColony.Game.Components.Inputs
 {
-    [RequireComponent(typeof(PlayerInput))]
     public class TileSelectionInput : MonoBehaviour
     {
-        public string TileSelectionAxis = "TileSelection";
+        public PlayerInput PlayerInput;
+        public IPlayerInput IPlayerInput;
+
+        public string AxisName = "TileSelection";
+        public Vector3Variable PointerPosition;
 
         public GameEvent OnBeginTileSelection;
         public GameEvent OnEndTileSelection;
 
-        private string _fullTileSelectionAxis;
         private bool _selectingTiles = false;
 
-
-        public void OnEnable()
+        private void Start()
         {
-            PlayerInput playerInput = GetComponent<PlayerInput>();
-
-            _fullTileSelectionAxis = (playerInput.AxisPrefix + TileSelectionAxis);
+            if (IPlayerInput == null)
+            {
+                IPlayerInput = PlayerInput;
+            }
         }
 
         private void Update()
         {
             CheckTileSelectionInput();
+
+            if (_selectingTiles)
+            {
+                UpdatePointerPosition();
+            }
         }
 
         private void CheckTileSelectionInput()
         {
-            float tileSelectionAxis = Input.GetAxis(_fullTileSelectionAxis);
+            float tileSelectionAxis = IPlayerInput.GetAxis(AxisName);
 
             if (tileSelectionAxis > 0 && !_selectingTiles)
             {
@@ -41,6 +50,11 @@ namespace MineColony.Game.Components.Inputs
                 _selectingTiles = false;
                 OnEndTileSelection.Raise();
             }
+        }
+
+        private void UpdatePointerPosition()
+        {
+            PointerPosition.Value = IPlayerInput.GetMousePointerPositionInWorld();
         }
     }
 }
