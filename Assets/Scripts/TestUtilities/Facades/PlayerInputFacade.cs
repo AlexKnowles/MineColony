@@ -6,12 +6,12 @@ namespace MineColony.TestUtilities.Facades
     public class PlayerInputFacade : IPlayerInput
     {
         public float FixedAxisValue;
-        public Vector3 FixedMousePointerPositionInWorldValue;
+        public Vector3 FixedWorldPositionUnderMousePointer;
 
-        public PlayerInputFacade(float fixedAxisValue, Vector3 fixedMousePointerPositionInWorldValue)
+        public PlayerInputFacade(float fixedAxisValue, Vector3 fixedWorldPositionUnderMousePointer)
         {
             FixedAxisValue = fixedAxisValue;
-            FixedMousePointerPositionInWorldValue = fixedMousePointerPositionInWorldValue;
+            FixedWorldPositionUnderMousePointer = fixedWorldPositionUnderMousePointer;
         }
 
         public float GetAxis(string fullTileSelectionAxis)
@@ -19,9 +19,9 @@ namespace MineColony.TestUtilities.Facades
             return FixedAxisValue;
         }
 
-        public Vector3 GetMousePointerPositionInWorld()
+        public Vector3 GetWorldPositionUnderMousePointer()
         {
-            return FixedMousePointerPositionInWorldValue;
+            return FixedWorldPositionUnderMousePointer;
         }
     }
 }

@@ -43,6 +43,7 @@ namespace MineColony.Game.Components.Inputs
             if (tileSelectionAxis > 0 && !_selectingTiles)
             {
                 _selectingTiles = true;
+                UpdatePointerPosition();
                 OnBeginTileSelection.Raise();
             }
             else if (tileSelectionAxis == 0 && _selectingTiles)
@@ -54,7 +55,7 @@ namespace MineColony.Game.Components.Inputs
 
         private void UpdatePointerPosition()
         {
-            PointerPosition.Value = IPlayerInput.GetMousePointerPositionInWorld();
+            PointerPosition.Value = IPlayerInput.GetWorldPositionUnderMousePointer();
         }
     }
 }

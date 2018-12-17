@@ -1,5 +1,4 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
-using MineColony.Game.Components.Inputs;
 using MineColony.TestUtilities.Builders;
 using MineColony.TestUtilities.Facades;
 using NUnit.Framework;
