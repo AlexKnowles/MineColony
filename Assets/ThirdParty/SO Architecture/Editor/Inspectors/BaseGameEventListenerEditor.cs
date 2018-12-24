@@ -34,13 +34,13 @@ namespace DanielEverland.ScriptableObjectArchitecture.Editor.Inspectors
             EditorGUILayout.ObjectField(_event, new GUIContent("Event", "Event which will trigger the response"));
             EditorGUILayout.PropertyField(_response, new GUIContent("Response"));
 
-            _showDebugFields.boolValue = EditorGUILayout.Foldout(_showDebugFields.boolValue, new GUIContent("Show Debug Fields"));
-            if (_showDebugFields.boolValue)
-            {
-                DrawDebugging();
-            }
+            //_showDebugFields.boolValue = EditorGUILayout.Foldout(_showDebugFields.boolValue, new GUIContent("Show Debug Fields"));
+            //if (_showDebugFields.boolValue)
+            //{
+            //    DrawDebugging();
+            //}
 
-            EditorGUILayout.PropertyField(DeveloperDescription);
+            //EditorGUILayout.PropertyField(DeveloperDescription);
 
             serializedObject.ApplyModifiedProperties();
         }
