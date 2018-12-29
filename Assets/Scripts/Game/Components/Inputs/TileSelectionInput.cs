@@ -14,6 +14,7 @@ namespace MineColony.Game.Components.Inputs
         public Vector3Variable PointerPosition;
 
         public GameEvent OnBeginTileSelection;
+        public GameEvent OnUpdatePointerPosition;
         public GameEvent OnEndTileSelection;
 
         private bool _selectingTiles = false;
@@ -56,6 +57,7 @@ namespace MineColony.Game.Components.Inputs
         private void UpdatePointerPosition()
         {
             PointerPosition.Value = IPlayerInput.GetWorldPositionUnderMousePointer();
+            OnUpdatePointerPosition.Raise();
         }
     }
 }

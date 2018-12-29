@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b75938839174f924db08cf0efcf049f1, type: 3}
-  m_Name: OnBeginTileSelection
+  m_Script: {fileID: 11500000, guid: 2a166c222ab884c40a383e3d630076e1, type: 3}
+  m_Name: SelectedTiles
   m_EditorClassIdentifier: 
   DeveloperDescription:
     _value: 
-  _debugValue: {x: 0, y: 0, z: 0}
+  _list: []

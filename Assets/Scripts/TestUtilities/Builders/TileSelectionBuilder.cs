@@ -1,22 +1,25 @@
-﻿using System;
-using DanielEverland.ScriptableObjectArchitecture.Variables;
-using MineColony.Game.Components;
+﻿using DanielEverland.ScriptableObjectArchitecture.Collections;
+using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using MineColony.Game.Systems;
 using UnityEngine;
 
 namespace MineColony.TestUtilities.Builders
 {
     public class TileSelectionBuilder
     {
-        private GameObject _gameObject;
         private TileSelection _tileSelection;
 
         public TileSelectionBuilder()
         {
-            _gameObject = new GameObject();
-            _tileSelection = _gameObject.AddComponent<TileSelection>();
+            _tileSelection = ScriptableObject.CreateInstance<TileSelection>();
 
-            _tileSelection.PointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
-            _tileSelection.TileSelectionTransform = _gameObject.GetComponent<Transform>();
+            _tileSelection.BeginSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+            _tileSelection.UpdateSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+            _tileSelection.EndSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+
+            _tileSelection.Tiles = ScriptableObject.CreateInstance<Tiles>();
+            _tileSelection.SelectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
+
         }
 
         public TileSelection Build()
@@ -24,16 +27,30 @@ namespace MineColony.TestUtilities.Builders
             return _tileSelection;
         }
 
-        public TileSelectionBuilder AddPointerPosition(Vector3Variable pointerPosition)
+        public TileSelectionBuilder AddBeginSelection(Vector3GameEvent beginSelection)
         {
-            _tileSelection.PointerPosition = pointerPosition;
+            _tileSelection.BeginSelection = beginSelection;
 
             return this;
         }
 
-        public TileSelectionBuilder AddTileSelectionTransform(Transform tileSelectionTransform)
+        public TileSelectionBuilder AddUpdateSelection(Vector3GameEvent updateSelection)
         {
-            _tileSelection.TileSelectionTransform = tileSelectionTransform;
+            _tileSelection.UpdateSelection = updateSelection;
+
+            return this;
+        }
+
+        public TileSelectionBuilder AddEndSelection(Vector3GameEvent endSelection)
+        {
+            _tileSelection.EndSelection = endSelection;
+
+            return this;
+        }
+
+        public TileSelectionBuilder AddSelectedTiles(Vector3Collection selectedTiles)
+        {
+            _tileSelection.SelectedTiles = selectedTiles;
 
             return this;
         }

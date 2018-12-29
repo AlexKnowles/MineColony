@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46669c3685b0df644bfc8ba39d1d3470, type: 3}
+  m_Name: TileSelection
+  m_EditorClassIdentifier: 
+  BeginSelection: {fileID: 11400000, guid: 02e541489611197429ea764b7471dd03, type: 2}
+  UpdateSelection: {fileID: 11400000, guid: f0c135b2c79492a4abef4886c8d5fb8b, type: 2}
+  EndSelection: {fileID: 11400000, guid: 3e65928c9bf27d8449b2fac80064783e, type: 2}
+  Tiles: {fileID: 11400000, guid: 41934cb0829be6b4da45cc46e0a4134d, type: 2}
+  SelectedTiles: {fileID: 11400000, guid: 4b11c2d23373e444890039ae3a161e03, type: 2}
