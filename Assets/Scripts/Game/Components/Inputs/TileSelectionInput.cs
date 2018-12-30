@@ -11,13 +11,19 @@ namespace MineColony.Game.Components.Inputs
         public IPlayerInput IPlayerInput;
 
         public string AxisName = "TileSelection";
-        public Vector3Variable PointerPosition;
 
-        public GameEvent OnBeginTileSelection;
-        public GameEvent OnUpdatePointerPosition;
-        public GameEvent OnEndTileSelection;
+        public Vector3GameEvent OnBeginTileSelection;
+        public Vector3GameEvent OnUpdateTileSelection;
+        public Vector3GameEvent OnEndTileSelection;
 
         private bool _selectingTiles = false;
+        private Vector3 _pointerPosisition
+        {
+            get
+            {
+                return IPlayerInput.GetWorldPositionUnderMousePointer();
+            }
+        }
 
         private void Start()
         {
@@ -33,7 +39,7 @@ namespace MineColony.Game.Components.Inputs
 
             if (_selectingTiles)
             {
-                UpdatePointerPosition();
+                UpdateTileSelection();
             }
         }
 
@@ -44,20 +50,18 @@ namespace MineColony.Game.Components.Inputs
             if (tileSelectionAxis > 0 && !_selectingTiles)
             {
                 _selectingTiles = true;
-                UpdatePointerPosition();
-                OnBeginTileSelection.Raise();
+                OnBeginTileSelection.Raise(_pointerPosisition);
             }
             else if (tileSelectionAxis == 0 && _selectingTiles)
             {
                 _selectingTiles = false;
-                OnEndTileSelection.Raise();
+                OnEndTileSelection.Raise(_pointerPosisition);
             }
         }
 
-        private void UpdatePointerPosition()
+        private void UpdateTileSelection()
         {
-            PointerPosition.Value = IPlayerInput.GetWorldPositionUnderMousePointer();
-            OnUpdatePointerPosition.Raise();
+            OnUpdateTileSelection.Raise(_pointerPosisition);
         }
     }
 }

@@ -2,7 +2,7 @@
 using DanielEverland.ScriptableObjectArchitecture.Events.Listeners;
 using UnityEngine;
 
-namespace MineColony.TestUtilities.Facades
+namespace MineColony.TestUtilities.Facades.Events
 {
     public class GameEventFacade : IGameEventListener
     {
@@ -26,5 +26,6 @@ namespace MineColony.TestUtilities.Facades
         {
             EventWasRaised = false;
         }
+
     }
 }

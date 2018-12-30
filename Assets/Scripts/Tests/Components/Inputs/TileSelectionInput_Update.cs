@@ -1,6 +1,7 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Variables;
 using MineColony.TestUtilities.Builders;
 using MineColony.TestUtilities.Facades;
+using MineColony.TestUtilities.Facades.Events;
 using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace MineColony.Tests.Components.Inputs
         [UnityTest]
         public IEnumerator PointerDownBeginsTileSelection()
         {
-            GameEventFacade onBeginTileSelection = new GameEventFacade();
+            Vector3GameEventFacade onBeginTileSelection = new Vector3GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
 
             new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
@@ -28,7 +29,7 @@ namespace MineColony.Tests.Components.Inputs
         [UnityTest]
         public IEnumerator MultiplePointersDownOnlyBeginsTileSelectionOnce()
         {
-            GameEventFacade onBeginTileSelection = new GameEventFacade();
+            Vector3GameEventFacade onBeginTileSelection = new Vector3GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
 
             new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
@@ -50,34 +51,9 @@ namespace MineColony.Tests.Components.Inputs
         }
 
         [UnityTest]
-        public IEnumerator PointerPositionUpdatedAfterOnBeginTileSelection()
-        {
-            GameEventFacade onBeginTileSelection = new GameEventFacade();
-            PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.forward);
-            Vector3Variable pointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
-
-            new TileSelectionInputBuilder().AddOnBeginTileSelection(onBeginTileSelection)
-                                           .AddPlayerInput(playerInputFacade)
-                                           .AddPointerPosition(pointerPosition)
-                                           .Build();
-
-            Assert.AreEqual(new Vector3(0, 0, 0), pointerPosition.Value);
-
-            yield return null;
-
-            Assert.AreEqual(new Vector3(0, 0, 1), pointerPosition.Value);
-
-            pointerPosition.Value = Vector3.zero;
-
-            yield return null;
-
-            Assert.AreEqual(new Vector3(0, 0, 1), pointerPosition.Value);
-        }
-
-        [UnityTest]
         public IEnumerator PointerUpEndsTileSelection()
         {
-            GameEventFacade onEndTileSelection = new GameEventFacade();
+            Vector3GameEventFacade onEndTileSelection = new Vector3GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
 
             new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
@@ -97,7 +73,7 @@ namespace MineColony.Tests.Components.Inputs
         [UnityTest]
         public IEnumerator MultiplePointersUpOnlyEndsTileSelectionOnce()
         {
-            GameEventFacade onEndTileSelection = new GameEventFacade();
+            Vector3GameEventFacade onEndTileSelection = new Vector3GameEventFacade();
             PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.zero);
 
             new TileSelectionInputBuilder().AddOnEndTileSelection(onEndTileSelection)
@@ -124,29 +100,62 @@ namespace MineColony.Tests.Components.Inputs
         }
 
         [UnityTest]
-        public IEnumerator PointerPositionNotUpdatedAfterOnEndTileSelection()
+        public IEnumerator PointerPositionUpdatedAfterOnBeginTileSelection()
         {
-            PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.left);
-            Vector3Variable pointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
+            PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.up);
+            Vector3GameEventFacade OnUpdateTileSelection = new Vector3GameEventFacade();
 
             new TileSelectionInputBuilder().AddPlayerInput(playerInputFacade)
-                                           .AddPointerPosition(pointerPosition)
+                                           .AddOnUpdateTileSelection(OnUpdateTileSelection)
                                            .Build();
 
             yield return null;
 
-            Assert.AreEqual(new Vector3(-1, 0, 0), pointerPosition.Value);
+            Assert.IsTrue(OnUpdateTileSelection.EventWasRaised);
+            Assert.AreEqual(new Vector3(0, 1, 0), OnUpdateTileSelection.EventRaisedValue);
 
-            pointerPosition.Value = Vector3.zero;
+            OnUpdateTileSelection.Reset();
+            playerInputFacade.FixedWorldPositionUnderMousePointer = Vector3.left;
+
+            yield return null;
+
+            Assert.IsTrue(OnUpdateTileSelection.EventWasRaised);
+            Assert.AreEqual(new Vector3(-1, 0, 0), OnUpdateTileSelection.EventRaisedValue);
+            
+            OnUpdateTileSelection.Reset();
+            playerInputFacade.FixedWorldPositionUnderMousePointer = Vector3.forward;
+
+            yield return null;
+
+            Assert.IsTrue(OnUpdateTileSelection.EventWasRaised);
+            Assert.AreEqual(new Vector3(0, 0, 1), OnUpdateTileSelection.EventRaisedValue);
+        }
+
+        [UnityTest]
+        public IEnumerator PointerPositionNotUpdatedAfterOnEndTileSelection()
+        {
+            PlayerInputFacade playerInputFacade = new PlayerInputFacade(1, Vector3.left);
+            Vector3GameEventFacade OnUpdateTileSelection = new Vector3GameEventFacade();
+
+            new TileSelectionInputBuilder().AddPlayerInput(playerInputFacade)
+                                           .AddOnUpdateTileSelection(OnUpdateTileSelection)
+                                           .Build();
+
+            yield return null;
+
+            Assert.IsTrue(OnUpdateTileSelection.EventWasRaised);
+            Assert.AreEqual(new Vector3(-1, 0, 0), OnUpdateTileSelection.EventRaisedValue);
+
+            OnUpdateTileSelection.Reset();
             playerInputFacade.FixedAxisValue = 0;
 
             yield return null;
 
-            Assert.AreEqual(new Vector3(0, 0, 0), pointerPosition.Value);
+            Assert.IsFalse(OnUpdateTileSelection.EventWasRaised);
 
             yield return null;
 
-            Assert.AreEqual(new Vector3(0, 0, 0), pointerPosition.Value);
+            Assert.IsFalse(OnUpdateTileSelection.EventWasRaised);
         }
     }
 }

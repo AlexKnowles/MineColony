@@ -2,6 +2,7 @@
 using DanielEverland.ScriptableObjectArchitecture.Variables;
 using MineColony.Game.Components.Inputs;
 using MineColony.TestUtilities.Facades;
+using MineColony.TestUtilities.Facades.Events;
 using UnityEngine;
 
 namespace MineColony.TestUtilities.Builders
@@ -14,9 +15,10 @@ namespace MineColony.TestUtilities.Builders
         {
             _tileSelectionInput = new GameObject().AddComponent<TileSelectionInput>();
 
-            _tileSelectionInput.OnBeginTileSelection = ScriptableObject.CreateInstance<GameEvent>();
-            _tileSelectionInput.OnEndTileSelection = ScriptableObject.CreateInstance<GameEvent>();
-            _tileSelectionInput.PointerPosition = ScriptableObject.CreateInstance<Vector3Variable>();
+            _tileSelectionInput.OnBeginTileSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+            _tileSelectionInput.OnUpdateTileSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+            _tileSelectionInput.OnEndTileSelection = ScriptableObject.CreateInstance<Vector3GameEvent>();
+
             _tileSelectionInput.IPlayerInput = new PlayerInputFacade(0, Vector3.zero);
         }
 
@@ -25,16 +27,23 @@ namespace MineColony.TestUtilities.Builders
             return _tileSelectionInput;
         }
 
-        public TileSelectionInputBuilder AddOnBeginTileSelection(GameEventFacade gameEventListenerFacade)
+        public TileSelectionInputBuilder AddOnBeginTileSelection(Vector3GameEventFacade gameEventListenerFacade)
         {
             _tileSelectionInput.OnBeginTileSelection = gameEventListenerFacade.GameEvent;
 
             return this;
         }
 
-        public TileSelectionInputBuilder AddOnEndTileSelection(GameEventFacade gameEventListenerFacade)
+        public TileSelectionInputBuilder AddOnEndTileSelection(Vector3GameEventFacade gameEventListenerFacade)
         {
             _tileSelectionInput.OnEndTileSelection = gameEventListenerFacade.GameEvent;
+
+            return this;
+        }
+
+        public TileSelectionInputBuilder AddOnUpdateTileSelection(Vector3GameEventFacade gameEventListenerFacade)
+        {
+            _tileSelectionInput.OnUpdateTileSelection = gameEventListenerFacade.GameEvent;
 
             return this;
         }
@@ -42,13 +51,6 @@ namespace MineColony.TestUtilities.Builders
         public TileSelectionInputBuilder AddPlayerInput(PlayerInputFacade playerInputFacade)
         {
             _tileSelectionInput.IPlayerInput = playerInputFacade;
-
-            return this;
-        }
-
-        public TileSelectionInputBuilder AddPointerPosition(Vector3Variable vector3Variable)
-        {
-            _tileSelectionInput.PointerPosition = vector3Variable;
 
             return this;
         }

@@ -1,7 +1,7 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
 using MineColony.Game.ScriptableObjectArchitecture.Collections;
 using MineColony.Game.Systems;
-using MineColony.TestUtilities.Facades;
+using MineColony.TestUtilities.Facades.Events;
 using UnityEngine;
 
 namespace MineColony.TestUtilities.Builders
