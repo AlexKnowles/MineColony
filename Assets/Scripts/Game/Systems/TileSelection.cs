@@ -16,7 +16,13 @@ namespace MineColony.Game.Systems
         public Tiles Tiles;
         public Vector3Collection SelectedTiles;
 
-        private Vector3 _firstSelectedTile;
+        public Vector3 FirstSelectedTile
+        {
+            get
+            {
+                return SelectedTiles[0];
+            }
+        }
 
         private void OnEnable()
         {
@@ -53,6 +59,14 @@ namespace MineColony.Game.Systems
             }
         }
 
+        public void OnBegin(Vector3 pointerPosition)
+        {
+            SelectedTiles.Clear();
+
+            Vector3 initalTileClick = Tiles.GetTileUnderPointer(pointerPosition);
+            SelectedTiles.Add(initalTileClick);
+        }
+
         public void OnUpdate(Vector3 pointerPosition)
         {
             List<Vector3> tilesBetweenFirstAndPointer = GetTilesBetweenFirstAndPointer(pointerPosition);
@@ -64,15 +78,6 @@ namespace MineColony.Game.Systems
             }
         }
 
-        public void OnBegin(Vector3 pointerPosition)
-        {
-            SelectedTiles.Clear();
-
-            _firstSelectedTile = Tiles.GetTileUnderPointer(pointerPosition);
-
-            SelectedTiles.Add(_firstSelectedTile);
-        }
-
         public void OnEnd(Vector3 pointerPosition)
         {
             // Do Stuff
@@ -81,28 +86,28 @@ namespace MineColony.Game.Systems
         private List<Vector3> GetTilesBetweenFirstAndPointer(Vector3 pointerPosition)
         {
             List<Vector3> results = new List<Vector3>();
-            Vector3 currentTile = new Vector3(_firstSelectedTile.x, _firstSelectedTile.y, _firstSelectedTile.z);
             Vector3 tileUnderPointer = Tiles.GetTileUnderPointer(pointerPosition);
 
-            float xTilesBetween = (tileUnderPointer.x - currentTile.x);
-            float yTilesBetween = (tileUnderPointer.y - currentTile.y);
-            float zTilesBetween = (tileUnderPointer.z - currentTile.z);
 
-            while (currentTile.x != tileUnderPointer.x)
+            float xChange = Mathf.Sign(tileUnderPointer.x - FirstSelectedTile.x);
+            float yChange = Mathf.Sign(tileUnderPointer.y - FirstSelectedTile.y);
+            float zChange = Mathf.Sign(tileUnderPointer.z - FirstSelectedTile.z);
+
+            float xMaxMin = (tileUnderPointer.x + xChange);
+            float yMaxMin = (tileUnderPointer.y + yChange);
+            float zMaxMin = (tileUnderPointer.z + zChange);
+
+            for (float x = FirstSelectedTile.x; x != xMaxMin; x += xChange)
             {
-                currentTile.x += Mathf.Sign(xTilesBetween);
-
-                while (currentTile.y != tileUnderPointer.y)
+                for (float y = FirstSelectedTile.y; y != yMaxMin; y += yChange)
                 {
-                    currentTile.y += Mathf.Sign(yTilesBetween);
-                    while (currentTile.z != tileUnderPointer.z)
+                    for (float z = FirstSelectedTile.z; z != zMaxMin; z += zChange)
                     {
-                        currentTile.z += Mathf.Sign(zTilesBetween);
-
-                        results.Add(new Vector3(currentTile.x, currentTile.y, currentTile.z));
+                        results.Add(new Vector3(x, y, z));
                     }
                 }
             }
+                       
 
             return results;
         }

@@ -20,7 +20,7 @@ namespace MineColony.Game.Systems
         {
             float closestTile = (value - (value % distance));
 
-            if (value < 0)
+            if (value < 0 && value != closestTile)
             {
                 closestTile -= distance;
             }
