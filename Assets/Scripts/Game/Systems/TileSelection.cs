@@ -1,5 +1,6 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Collections;
 using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -70,12 +71,11 @@ namespace MineColony.Game.Systems
         public void OnUpdate(Vector3 pointerPosition)
         {
             List<Vector3> tilesBetweenFirstAndPointer = GetTilesBetweenFirstAndPointer(pointerPosition);
-            List<Vector3> tilesNotAlreadySelected = tilesBetweenFirstAndPointer.Where(t => !SelectedTiles.Contains(t)).ToList();
 
-            foreach (Vector3 tile in tilesNotAlreadySelected)
-            {
-                SelectedTiles.Add(tile);
-            }
+            SelectedTiles.Clear();
+
+            AddTilesJustSelected(tilesBetweenFirstAndPointer);
+            RemoveTilesThatAreNoLongerSelected(tilesBetweenFirstAndPointer);
         }
 
         public void OnEnd(Vector3 pointerPosition)
@@ -106,10 +106,33 @@ namespace MineColony.Game.Systems
                         results.Add(new Vector3(x, y, z));
                     }
                 }
-            }
-                       
+            }                       
 
             return results;
+        }
+        
+        private void AddTilesJustSelected(List<Vector3> tilesBetweenFirstAndPointer)
+        {
+            foreach (Vector3 tile in tilesBetweenFirstAndPointer)
+            {
+                if (!SelectedTiles.Contains(tile))
+                {
+                    SelectedTiles.Add(tile);
+                }
+            }
+        }
+
+        private void RemoveTilesThatAreNoLongerSelected(List<Vector3> tilesBetweenFirstAndPointer)
+        {
+            for (int i = (SelectedTiles.Count - 1); i >= 0; i--)
+            {
+                Vector3 tile = SelectedTiles[i];
+
+                if (!tilesBetweenFirstAndPointer.Contains(tile))
+                {
+                    SelectedTiles.Remove(tile);
+                }
+            }
         }
     }
 }

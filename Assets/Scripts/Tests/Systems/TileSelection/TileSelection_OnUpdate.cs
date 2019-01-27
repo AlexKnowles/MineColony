@@ -24,7 +24,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_XShiftPositive()
+        public void MultipleTilesSelected_XShift_Positive()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(1f, 0f, 11f));
@@ -41,7 +41,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_XShiftNegative()
+        public void MultipleTilesSelected_XShift_Negative()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(3f, 0f, 11f));
@@ -58,7 +58,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_YShiftPositive()
+        public void MultipleTilesSelected_YShift_Positive()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(2f, 2f, 11f));
@@ -75,7 +75,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_YShiftNegative()
+        public void MultipleTilesSelected_YShift_Negative()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(2f, -9f, 11f));
@@ -92,7 +92,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_ZShiftPositive()
+        public void MultipleTilesSelected_ZShift_Positive()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(1f, 1f, 321f));
@@ -109,7 +109,7 @@ namespace MineColony.Tests.Systems
         }
 
         [Test]
-        public void MultipleTilesSelected_ZShiftNegative()
+        public void MultipleTilesSelected_ZShift_Negative()
         {
             Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
             selectedTiles.Add(new Vector3(1f, 1f, 1f));
@@ -170,6 +170,37 @@ namespace MineColony.Tests.Systems
             Assert.AreEqual(new Vector3(0f, 1f, 0f), selectedTiles[5]);
             Assert.AreEqual(new Vector3(0f, 0f, 1f), selectedTiles[6]);
             Assert.AreEqual(new Vector3(0f, 0f, 0f), selectedTiles[7]);
+
+        }
+
+        [Test]
+        public void MultipleTilesSelected_TwoByTwoByTwoGrid_OutIn()
+        {
+            Vector3Collection selectedTiles = ScriptableObject.CreateInstance<Vector3Collection>();
+            selectedTiles.Add(new Vector3(1f, 1f, 1f));
+
+            TileSelection tileSelection = new TileSelectionBuilder().AddSelectedTiles(selectedTiles)
+                                                                    .Build();
+
+            tileSelection.OnUpdate(new Vector3(0f, 0f, 0f));
+
+            Assert.AreEqual(8, selectedTiles.Count);
+
+            Assert.AreEqual(new Vector3(1f, 1f, 1f), selectedTiles[0]);
+            Assert.AreEqual(new Vector3(1f, 1f, 0f), selectedTiles[1]);
+            Assert.AreEqual(new Vector3(1f, 0f, 1f), selectedTiles[2]);
+            Assert.AreEqual(new Vector3(1f, 0f, 0f), selectedTiles[3]);
+            Assert.AreEqual(new Vector3(0f, 1f, 1f), selectedTiles[4]);
+            Assert.AreEqual(new Vector3(0f, 1f, 0f), selectedTiles[5]);
+            Assert.AreEqual(new Vector3(0f, 0f, 1f), selectedTiles[6]);
+            Assert.AreEqual(new Vector3(0f, 0f, 0f), selectedTiles[7]);
+
+
+            tileSelection.OnUpdate(new Vector3(1f, 1f, 1f));
+
+            Assert.AreEqual(1, selectedTiles.Count);
+
+            Assert.AreEqual(new Vector3(1f, 1f, 1f), selectedTiles[0]);
 
         }
     }

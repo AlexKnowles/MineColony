@@ -10,7 +10,8 @@ namespace MineColony.Tests.Systems
         [Test]
         public void OneByOneByOne_Positive()
         {
-            Tiles tiles = new TilesBuilder().Build();
+            Tiles tiles = new TilesBuilder().AddDistanceBetweenTiles(Vector3.one)
+                                            .Build();
 
             Vector3 result = tiles.GetTileUnderPointer(new Vector3(2.3434f, 3.723123f, 9.89038f));
 
@@ -20,7 +21,8 @@ namespace MineColony.Tests.Systems
         [Test]
         public void OneByOneByOne_Negative()
         {
-            Tiles tiles = new TilesBuilder().Build();
+            Tiles tiles = new TilesBuilder().AddDistanceBetweenTiles(Vector3.one)
+                                            .Build();
 
             Vector3 result = tiles.GetTileUnderPointer(new Vector3(-93.34224f, -12.72323f, -3.12038f));
 
