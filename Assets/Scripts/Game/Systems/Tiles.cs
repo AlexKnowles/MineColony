@@ -16,6 +16,11 @@ namespace MineColony.Game.Systems
             return new Vector3(x, y, z);
         }
 
+        public Vector3 GetTilePositionInWorld(Vector3 tilePosition)
+        {
+            return tilePosition;
+        }
+
         public float GetValueBasedOnDistance(float value, float distance)
         {
             float closestTile = (value - (value % distance));
