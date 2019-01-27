@@ -10,10 +10,9 @@ namespace DanielEverland.ScriptableObjectArchitecture.Events.GameEvents
         private readonly List<IGameEventListener<T>> _typedListeners = new List<IGameEventListener<T>>();
         private readonly List<System.Action<T>> _typedActions = new List<System.Action<T>>();
 
-#if UNITY_EDITOR
         [SerializeField]
         protected T _debugValue;
-#endif
+
         public void Raise(T value)
         {
             AddStackTrace(value);

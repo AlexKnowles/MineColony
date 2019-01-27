@@ -23,11 +23,8 @@ namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
         private TEvent _event;
         [SerializeField]
         private TResponse _response;
-
-#if UNITY_EDITOR
         [SerializeField]
         protected TType _debugValue;
-#endif
 
         public void OnEventRaised(TType value)
         {
@@ -133,7 +130,6 @@ namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
     }
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
-#if UNITY_EDITOR
 #pragma warning disable 0414
         [SerializeField]
         private readonly bool _showDebugFields = false;
@@ -142,7 +138,7 @@ namespace DanielEverland.ScriptableObjectArchitecture.Events.Listeners
         private readonly bool _enableGizmoDebugging = true;
         [SerializeField]
         private Color _debugColor = Color.cyan;
-#endif
+
 
         public List<StackTraceEntry> StackTraces { get { return _stackTraces; } }
         private readonly List<StackTraceEntry> _stackTraces = new List<StackTraceEntry>();

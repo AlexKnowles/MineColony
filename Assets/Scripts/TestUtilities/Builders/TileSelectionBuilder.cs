@@ -1,5 +1,4 @@
 ﻿using DanielEverland.ScriptableObjectArchitecture.Collections;
-using DanielEverland.ScriptableObjectArchitecture.Events.GameEvents;
 using MineColony.Game.Systems;
 using UnityEngine;
 
