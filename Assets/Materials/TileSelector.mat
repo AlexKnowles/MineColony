@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ground
+  m_Name: TileSelector
   m_Shader: {fileID: 4800000, guid: dbb4a28f80fc6b4459324fb2312a5ba7, type: 3}
   m_ShaderKeywords: _GRIDENABLED_ON
   m_LightmapFlags: 4
@@ -56,12 +56,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SideTex:
-        m_Texture: {fileID: 2800000, guid: 957c1bc352c063440a0e1d375777eba7, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopTex:
         m_Texture: {fileID: 2800000, guid: 0bf07255e96d0b6439c806e1d24eefd5, type: 3}
-        m_Scale: {x: 15, y: 15}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
@@ -73,7 +73,7 @@ Material:
     - _GlossyReflections: 1
     - _GridEnabled: 1
     - _GridStep: 1
-    - _GridWidth: 3
+    - _GridWidth: 2
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -86,6 +86,6 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GridColor: {r: 0.93333334, g: 0.74509805, b: 0.59607846, a: 1}
-    - _SideTexTint: {r: 1, g: 0.6, b: 0.28627452, a: 1}
-    - _TopTexTint: {r: 0.8862745, g: 0.6156863, b: 0.40392157, a: 1}
+    - _GridColor: {r: 0.14177401, g: 0.6320754, b: 0, a: 1}
+    - _SideTexTint: {r: 1, g: 1, b: 1, a: 1}
+    - _TopTexTint: {r: 0.50624794, g: 0.8301887, b: 0.41117835, a: 1}
