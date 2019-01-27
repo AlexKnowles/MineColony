@@ -10,10 +10,6 @@ namespace MineColony.Game.Systems
     [CreateAssetMenu(menuName = "Systems/TileSelection")]
     public class TileSelection : ScriptableObject
     {
-        public Vector3GameEvent BeginSelection;
-        public Vector3GameEvent UpdateSelection;
-        public Vector3GameEvent EndSelection;
-
         public Tiles Tiles;
         public Vector3Collection SelectedTiles;
 
@@ -22,41 +18,6 @@ namespace MineColony.Game.Systems
             get
             {
                 return SelectedTiles[0];
-            }
-        }
-
-        private void OnEnable()
-        {
-            RegisterEvents();
-        }
-
-        private void RegisterEvents()
-        {
-            if (BeginSelection != null)
-            {
-                Vector3GameEventListenerLite beginSelectionListener = new Vector3GameEventListenerLite
-                {
-                    EventsToRaise = OnBegin
-                };
-                BeginSelection.AddListener(beginSelectionListener);
-            }
-
-            if (UpdateSelection != null)
-            {
-                Vector3GameEventListenerLite updateSelectionListener = new Vector3GameEventListenerLite
-                {
-                    EventsToRaise = OnUpdate
-                };
-                UpdateSelection.AddListener(updateSelectionListener);
-            }
-
-            if (EndSelection != null)
-            {
-                Vector3GameEventListenerLite endSelectionListener = new Vector3GameEventListenerLite
-                {
-                    EventsToRaise = OnEnd
-                };
-                EndSelection.AddListener(endSelectionListener);
             }
         }
 

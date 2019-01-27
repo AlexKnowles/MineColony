@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5853500435857448812}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.2906113, y: 0, z: 3.2399216}
+  m_LocalPosition: {x: 5.015167, y: 0, z: -1.6128159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5853500436128656646}
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription:
     _value: 
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _previouslyRegisteredEvent: {fileID: 11400000, guid: 02e541489611197429ea764b7471dd03,
     type: 2}
   _event: {fileID: 11400000, guid: 02e541489611197429ea764b7471dd03, type: 2}
@@ -69,7 +68,6 @@ MonoBehaviour:
     m_TypeName: DanielEverland.ScriptableObjectArchitecture.Events.Responses.Vector3UnityEvent,
       DanielEverland.ScriptableObjectArchitecture, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  _debugValue: {x: 0, y: 0, z: 0}
 --- !u!114 &8540080042587343597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +82,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperDescription:
     _value: 
-  _debugColor: {r: 0, g: 1, b: 1, a: 1}
   _previouslyRegisteredEvent: {fileID: 11400000, guid: 3e65928c9bf27d8449b2fac80064783e,
     type: 2}
   _event: {fileID: 11400000, guid: 3e65928c9bf27d8449b2fac80064783e, type: 2}
@@ -105,7 +102,6 @@ MonoBehaviour:
     m_TypeName: DanielEverland.ScriptableObjectArchitecture.Events.Responses.Vector3UnityEvent,
       DanielEverland.ScriptableObjectArchitecture, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  _debugValue: {x: 0, y: 0, z: 0}
 --- !u!114 &101228525074622403
 MonoBehaviour:
   m_ObjectHideFlags: 0
