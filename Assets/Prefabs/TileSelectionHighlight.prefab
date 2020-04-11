@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5853500435857448812}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.7949066, y: 0, z: 0.09880829}
+  m_LocalPosition: {x: 6.8968964, y: 0, z: 0.34571838}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5853500436128656646}
@@ -66,9 +66,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: DanielEverland.ScriptableObjectArchitecture.Events.Responses.Vector3UnityEvent,
-      DanielEverland.ScriptableObjectArchitecture, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   _debugValue: {x: 0, y: 0, z: 0}
 --- !u!114 &8540080042587343597
 MonoBehaviour:
@@ -102,9 +99,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: DanielEverland.ScriptableObjectArchitecture.Events.Responses.Vector3UnityEvent,
-      DanielEverland.ScriptableObjectArchitecture, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
   _debugValue: {x: 0, y: 0, z: 0}
 --- !u!114 &101228525074622403
 MonoBehaviour:
@@ -175,6 +169,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -186,6 +181,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
